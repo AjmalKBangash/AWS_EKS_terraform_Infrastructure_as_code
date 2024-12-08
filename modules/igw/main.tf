@@ -1,4 +1,4 @@
-resource "aws_internet_gateway" "igw" {
+resource "aws_internet_gateway" "ajay_igw" {
 #   vpc_id = aws_vpc.ajay_vpc.id
   vpc_id = var.vpc_id
 

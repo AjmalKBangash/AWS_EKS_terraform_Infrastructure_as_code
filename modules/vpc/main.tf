@@ -59,7 +59,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ssh_ipv4_ajay" {
   security_group_id = data.aws_security_group.ajay_vpc_sg.id
   cidr_ipv4         = aws_vpc.ajay_vpc.cidr_block
   from_port         = 22
-  ip_protocol       = "ssh"
+  ip_protocol       = "tcp"
   to_port           = 22
 }
 
