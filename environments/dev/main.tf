@@ -99,8 +99,91 @@ module "route_tables" {
   ajay_private_route_table_id = module.route_tables.ajay_private_route_table_id
 }
 
+# THIS MODULE IS ABOUT CREATING IAM ROLES AND POLICIES FOR ROLES ONLY B/C IT IS "aws_iam_role_policy" WHIXH WILL BE DIRECTLY CONNECTED TO "aws_iam_role"
+module "ajay_iam_role_and_policy_for_eks_control_plane" {
+  source = "../../modules/iam_role"
+  ajay_iam_role_name = "ajay_iam_role_for_eks_control_plane"
+  ajay_iam_role_description = "This role is for aws eks cluster control plane ..."
+  ajay_iam_role_assume_role_policy = jsondecode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "eks.amazonaws.com"
+        }
+      },
+    ]
+  })
+  ajay_iam_role_policy_name = "ajay_iam_role_policy_for_control_plane"
+  ajay_iam_role_policy_policy = jsondecode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "ec2:DescribeInstances",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeVpcs",
+          "ec2:CreateSecurityGroup",
+          "ec2:CreateVPC",
+          "ec2:DeleteSecurityGroup",
+          "ec2:DeleteVPC",
+          "ec2:CreateNetworkInterface",
+          "ec2:DeleteNetworkInterface",
+          "ec2:AttachNetworkInterface",
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:DescribeKeyPairs",
+          "ec2:DescribeInstanceTypes",
+          "iam:PassRole",
+          "iam:GetRole",
+          "iam:ListRoles",
+          "iam:ListAttachedRolePolicies",
+          "iam:AttachRolePolicy",
+          "iam:CreateRole",
+          "iam:CreatePolicy",
+          "iam:DeleteRole",
+          "iam:DeletePolicy",
+          "iam:PutRolePolicy",
+          "iam:DetachRolePolicy",
+          "ecr:GetAuthorizationToken",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:GetRepositoryPolicy",
+          "ecr:DescribeRepositories",
+          "eks:DescribeCluster",
+          "eks:UpdateClusterVersion",
+          "eks:CreateFargateProfile",
+          "eks:DeleteFargateProfile",
+          "eks:DescribeFargateProfile",
+          "eks:CreateNodegroup",
+          "eks:DeleteNodegroup",
+          "eks:DescribeNodegroup",
+          "eks:UpdateNodegroupConfig",
+          "eks:UpdateNodegroupVersion"
+        ]
+        Effect = "Allow"
+        Resource = "*"
+      },
+      {
+        Action = [
+          "logs:DescribeLogGroups",
+          "logs:CreateLogGroup",
+          "logs:PutRetentionPolicy",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+          "logs:DescribeLogStreams"
+        ]
+        Effect = "Allow"
+        Resource = "*"
+      }
+    ]
+  })
+  ajay_iam_role_policy_role = module.iam_role.ajay_iam_role_name_output
+  ajay_iam_role_max_session_duration = 7200
+}
 
 
+# ajay_iam_role_name_output
 
 
 
