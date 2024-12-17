@@ -5,6 +5,8 @@ resource "aws_eks_cluster" "ajay_eks_cluster" {
   role_arn = var.ajay_role_arn_for_eks_control_plane
 
   vpc_config {
+    endpoint_private_access = var.ajay_eks_cluster_endpoint_private_access # default = false
+    endpoint_public_access = var.ajay_eks_cluster_endpoint_public_access # default = true
     subnet_ids = [
       var.ajay_aws_subnet_id1,
       var.ajay_aws_subnet_id2,
@@ -29,13 +31,25 @@ resource "aws_eks_cluster" "ajay_eks_cluster" {
     node_role_arn = var.ajay_node_role_arn_for_eks_worker_nodes
   }
 
+  kubernetes_network_config {
+    elastic_load_balancing {
+       enabled = var.ajay_eks_cluster_elastic_load_balancing_enabled # default value = enabled
+    }
+    ip_family = var.ajay_eks_cluster_ip_family
+  }
+
   version  = var.version
 
+  zonal_shift_config {
+    enabled = var.ajay_eks_cluster_zonal_shifting_enabled  # Enable zonal shifting for the control plane
+  }
   # Ensure that IAM Role permissions are created before and deleted
   # after EKS Cluster handling. Otherwise, EKS will not be able to
   # properly delete EKS managed EC2 infrastructure such as Security Groups.
 #   depends_on = [
 #     aws_iam_role_policy_attachment.cluster_AmazonEKSClusterPolicy,
 #   ]
+ 
+  tags = var.ajay_eks_cluster_tags
   depends_on = var.ajay_eks_cluster_depends_on
 }

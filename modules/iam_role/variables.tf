@@ -3,9 +3,19 @@ variable "ajay_iam_role_name" {
   type = string
 }
 
+variable "ajay_iam_role_description" {
+  description = "ajay_iam_role_description"
+  type = string
+}
+
 variable "ajay_iam_role_assume_role_policy" {
   description = "ajay_iam_role_assume_role_policy"
   type = string
+}
+
+variable "ajay_iam_role_tags" {
+  description = "tags for ajay iam role .."
+  type = map(string)
 }
 
 variable "ajay_iam_role_policy_name" {
@@ -20,11 +30,6 @@ variable "ajay_iam_role_policy_policy" {
 
 variable "ajay_iam_role_policy_role" {
   description = "(Required) The name of the IAM role to attach to the policy."
-  type = string
-}
-
-variable "ajay_iam_role_description" {
-  description = "ajay_iam_role_description"
   type = string
 }
 

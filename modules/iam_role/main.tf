@@ -18,7 +18,7 @@ resource "aws_iam_role" "ajay_iam_role" {
   force_detach_policies = false
   description = var.ajay_iam_role_description
   max_session_duration = var.ajay_iam_role_max_session_duration
-
+  tags = var.ajay_iam_role_tags
 }
 
 resource "aws_iam_role_policy" "ajay_iam_role_policy" {
@@ -130,40 +130,40 @@ resource "aws_iam_role_policy" "ajay_iam_role_policy" {
 
 
 # policy for aws eks cluster control plane 
-#   policy = jsonencode({
-#     Version = "2012-10-17"
-#     Statement = [
-#       {
-#         Effect = "Allow"
-#         Action = [
-#           "ec2:*",
-#           "ecr:*",
-#           "s3:*",
-#           "cloudwatch:*",
-#           "autoscaling:*",
-#           "eks:*",
-#           "iam:PassRole",
-#           "logs:*",
-#           "route53:*",
-#           "vpc:*",
-#           "kinesis:*",
-#           "sns:*",
-#           "cloudformation:*",
-#           "dynamodb:*",
-#           "stepfunctions:*",
-#           "secretsmanager:*",
-#           "kafka:*",
-#           "elasticsearch:*",
-#           "rds:*",
-#           "lambda:*",
-#           "ssm:*",
-#           "events:*",
-#           "acm:*"
-#         ],
-#         Resource = "*"
-#       }
-#     ]
-#   })
+  # policy = jsonencode({
+  #   Version = "2012-10-17"
+  #   Statement = [
+  #     {
+  #       Effect = "Allow"
+  #       Action = [
+  #         "ec2:*",
+  #         "ecr:*",
+  #         "s3:*",
+  #         "cloudwatch:*",
+  #         "autoscaling:*",
+  #         "eks:*",
+  #         "iam:PassRole",
+  #         "logs:*",
+  #         "route53:*",
+  #         "vpc:*",
+  #         "kinesis:*",
+  #         "sns:*",
+  #         "cloudformation:*",
+  #         "dynamodb:*",
+  #         "stepfunctions:*",
+  #         "secretsmanager:*",
+  #         "kafka:*",
+  #         "elasticsearch:*",
+  #         "rds:*",
+  #         "lambda:*",
+  #         "ssm:*",
+  #         "events:*",
+  #         "acm:*"
+  #       ],
+  #       Resource = "*"
+  #     }
+  #   ]
+  # })
 
 
 # woker nodes policy for interacting with aws services from aws eks custer worker nodes 

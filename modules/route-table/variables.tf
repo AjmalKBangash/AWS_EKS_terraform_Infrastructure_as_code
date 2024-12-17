@@ -13,6 +13,11 @@ variable "ajay_pub_subnet_001_id" {
   type = string
 }
 
+variable "ajay_pub_subnet_002_id" {
+  description = "public subnet id for route table to associate route table to public subnet for public instances or all type of resources to connect to internet publicly"
+  type = string
+}
+
 variable "ajay_public_route_table_id" {
   description = "A route table id created for public subnet"
   type = string
@@ -24,6 +29,11 @@ variable "ajay_pri_ngw_id" {
 }
 
 variable "ajay_pri_subnet_001_id" {
+  description = "a private subnet id for route table to associate it with private subnet"
+  type = string
+}
+
+variable "ajay_pri_subnet_002_id" {
   description = "a private subnet id for route table to associate it with private subnet"
   type = string
 }

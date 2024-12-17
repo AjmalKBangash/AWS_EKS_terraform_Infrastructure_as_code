@@ -13,6 +13,16 @@ variable "ajay_node_role_arn_for_eks_worker_nodes" {
   type = string
 }
 
+variable "ajay_eks_cluster_elastic_load_balancing_enabled" {
+  description = "ajay_eks_cluster_elastic_load_balancing"
+  type = bool
+}
+
+variable "ajay_eks_cluster_ip_family" {
+  description = "ajay_eks_cluster_ip_family"
+  type = string
+}
+
 variable "authentication_mode" {
   description = "authentication mode for aceessing aws eks cluster "
   type = string
@@ -25,21 +35,26 @@ variable "bootstrap_cluster_creator_admin_permissions" {
   default = false
 }
 
-variable "public_access" {
-  description = "whether to allow public access (internet access) to aws eks k8s api for managing resources "
+variable "ajay_eks_cluster_endpoint_public_access" {
+  description = "whether to allow public access from the internet to vpc and aws eks cluster"
   type = bool
   default = true
 }
 
-variable "private_access" {
-  description = "whether to allow private access (inside vpc) to aws eks k8s api for managing resources "
+variable "ajay_eks_cluster_endpoint_private_access" {
+  description = "whether to allow private access (inside vpc) from other vpc resources in aws eks cluster"
   type = bool
-  default = true
+  default = false
 }
 
 variable "version" {
   description = "version for aws_eks_cluster if not applied then the latest version will be used"
   type = string
+}
+
+variable "ajay_eks_cluster_zonal_shifting_enabled" {
+  description = "ajay_eks_cluster_zonal_shifting_enabled"
+  type = bool
 }
 
 variable "ajay_aws_subnet_id1" {
@@ -80,4 +95,9 @@ variable "ajay_eks_cluster_depends_on" {
 variable "bootstrap_self_managed_addons" {
   description = "Self manaaged add ons which is for networking btw pods and mapping services to pods and container ip addresses etc"
   type = string
+}
+
+variable "ajay_eks_cluster_tags" {
+  description = "the tags for ajay_eks_cluster "
+  type = map(string)
 }
