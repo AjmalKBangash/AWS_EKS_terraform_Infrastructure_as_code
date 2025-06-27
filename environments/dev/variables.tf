@@ -4,6 +4,12 @@ variable "cidr_block" {
   default = "10.0.0.0/16"
 }
 
+variable "cluster_name" {
+  description = "Name of the Kubernetes cluster"
+  type        = string
+  default = "ajay_eks_cluster_auto_mode"
+}
+
 variable "instance_tenancy" {
   description = "vpc tenancy default means shared hardware and dedicated means only for a single vpc"
   type = string
