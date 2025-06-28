@@ -13,6 +13,11 @@ resource "aws_vpc" "ajay_vpc" {
 # Reference the default security group of the pre created VPC
 data "aws_security_group" "ajay_vpc_sg" {
   vpc_id = aws_vpc.ajay_vpc.id
+
+  # filter {
+  #   name   = "tag:Environment"
+  #   values = ["dev"]
+  # }
 }
 
 
