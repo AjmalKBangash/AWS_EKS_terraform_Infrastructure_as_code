@@ -21,8 +21,3 @@ private subnet traffic ---> ngw ----> igw
 ....2 vpc, subnets, igw, ngw, eip, route tables (routing rules), iam role with policies (assignment) (cluster)
 
 
-k8s start (basic knowledge)
-
-
-query ----> list me all possible concepts and features in k8s ? do not leave any ? only list it ?
-
