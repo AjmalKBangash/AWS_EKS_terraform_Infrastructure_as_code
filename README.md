@@ -1,5 +1,7 @@
 This is a Production level folder and file structure: A production-level Terraform folder and file structure is essential for managing large-scale infrastructure in a clean and efficient manner. Here's a recommended structure that you can use for creating and managing infrastructure at scale. This structure supports modularity, reusability, and maintainability, following best practices for Terraform code organization.
 
+<!-- ajmal@ajmal-khan-bangash:~/Desktop/DevOps/Terraform/Aws_Project_003/environments/dev$ terraform plan -var-file=./../../terraform.tfvars -->
+
 ### 1. **Root Level Structure**
 At the root level, you’ll have key files for overall configuration and organization of your Terraform project.
 
